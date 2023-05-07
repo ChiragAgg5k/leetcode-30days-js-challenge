@@ -21,3 +21,8 @@ var createCounter = function(n) {
  * counter() // 11
  * counter() // 12
  */
+
+counter = createCounter(10) // Initialize counter to 10
+console.log(counter()) // 10
+console.log(counter()) // 11
+console.log(counter()) // 12
