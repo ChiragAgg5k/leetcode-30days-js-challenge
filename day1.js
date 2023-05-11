@@ -7,8 +7,8 @@ Higher-order functions are functions that take another function as an argument o
 /** 
  * @return {Function}
  */
-var createHelloWorld = function() {
-    return function(...args) {
+var createHelloWorld = function () {
+    return function (...args) {
         return "Hello World"
     }
 };

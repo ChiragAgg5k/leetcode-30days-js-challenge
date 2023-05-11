@@ -8,16 +8,16 @@ It returns an object with three methods: increment, decrement, and reset.
  * @param {integer} init
  * @return { increment: Function, decrement: Function, reset: Function }
  */
-var createCounter = function(init) {
+var createCounter = function (init) {
     let counter = init;
-    return{
-        increment: function(){
+    return {
+        increment: function () {
             return ++counter;
         },
-        decrement: function(){
+        decrement: function () {
             return --counter;
         },
-        reset: function(){
+        reset: function () {
             counter = init;
             return counter;
         },

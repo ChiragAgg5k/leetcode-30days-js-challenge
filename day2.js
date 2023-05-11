@@ -8,9 +8,9 @@ Here the function returned has access to the variable n from the outer scope.
  * @param {number} n
  * @return {Function} counter
  */
-var createCounter = function(n) {
+var createCounter = function (n) {
     let counter = n
-    return function() {
+    return function () {
         return n++;
     };
 };
