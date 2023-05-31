@@ -4,56 +4,54 @@
  * @return {boolean}
  */
 var areDeeplyEqual = function (o1, o2) {
+	// null
+	if (o1 === null || o2 === null) {
+		return o1 === o2;
+	}
 
-    // null
-    if (o1 === null || o2 === null) {
-        return o1 === o2;
-    }
+	// types not same
+	if (typeof o1 !== typeof o2) {
+		return false;
+	}
 
-    // types not same
-    if (typeof o1 !== typeof o2) {
-        return false;
-    }
+	// primitive
+	if (typeof o1 !== "object") {
+		return o1 === o2;
+	}
 
-    // primitive
-    if (typeof o1 !== 'object') {
-        return o1 === o2;
-    }
+	// array
+	if (Array.isArray(o1) || Array.isArray(o2)) {
+		// using String() to compare arrays
+		// eg. a = [undefined] , b = {'a':1}, on looping with === will return true.
+		// typeof both is object, but string of array will be different from string of object
+		if (String(o1) !== String(o2)) {
+			return false;
+		}
 
-    // array
-    if (Array.isArray(o1) || Array.isArray(o2)) {
+		// now we confirm that both are arrays
 
-        // using String() to compare arrays
-        // eg. a = [undefined] , b = {'a':1}, on looping with === will return true.
-        // typeof both is object, but string of array will be different from string of object
-        if (String(o1) !== String(o2)) {
-            return false;
-        }
+		for (let i = 0; i < o1.length; i++) {
+			if (!areDeeplyEqual(o1[i], o2[i])) {
+				return false;
+			}
+		}
+	} else {
+		// object
 
-        // now we confirm that both are arrays
+		// number of keys not same
+		if (Object.keys(o1).length !== Object.keys(o2).length) {
+			return false;
+		}
 
-        for (let i = 0; i < o1.length; i++) {
-            if (!areDeeplyEqual(o1[i], o2[i])) {
-                return false;
-            }
-        }
-    } else { // object
+		// no need to check if keys are same or not
+		for (const key in o1) {
+			if (!areDeeplyEqual(o1[key], o2[key])) {
+				return false;
+			}
+		}
+	}
 
-        // number of keys not same
-        if (Object.keys(o1).length !== Object.keys(o2).length) {
-            return false;
-        }
-
-        // no need to check if keys are same or not
-        for (const key in o1) {
-            if (!areDeeplyEqual(o1[key], o2[key])) {
-                return false;
-            }
-        }
-
-    }
-
-    return true;
+	return true;
 };
 
 // There are 4 cases to consider:

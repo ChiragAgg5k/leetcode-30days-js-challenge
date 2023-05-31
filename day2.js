@@ -9,20 +9,20 @@ Here the function returned has access to the variable n from the outer scope.
  * @return {Function} counter
  */
 var createCounter = function (n) {
-    let counter = n
-    return function () {
-        return n++;
-    };
+	let counter = n;
+	return function () {
+		return n++;
+	};
 };
 
-/** 
+/**
  * const counter = createCounter(10)
  * counter() // 10
  * counter() // 11
  * counter() // 12
  */
 
-counter = createCounter(10) // Initialize counter to 10
-console.log(counter()) // 10
-console.log(counter()) // 11
-console.log(counter()) // 12
+counter = createCounter(10); // Initialize counter to 10
+console.log(counter()); // 10
+console.log(counter()); // 11
+console.log(counter()); // 12

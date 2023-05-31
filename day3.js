@@ -9,19 +9,19 @@ It returns an object with three methods: increment, decrement, and reset.
  * @return { increment: Function, decrement: Function, reset: Function }
  */
 var createCounter = function (init) {
-    let counter = init;
-    return {
-        increment: function () {
-            return ++counter;
-        },
-        decrement: function () {
-            return --counter;
-        },
-        reset: function () {
-            counter = init;
-            return counter;
-        },
-    }
+	let counter = init;
+	return {
+		increment: function () {
+			return ++counter;
+		},
+		decrement: function () {
+			return --counter;
+		},
+		reset: function () {
+			counter = init;
+			return counter;
+		}
+	};
 };
 
 /**

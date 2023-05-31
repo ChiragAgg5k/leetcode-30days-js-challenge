@@ -8,17 +8,15 @@ In other words, it's the process of chaining two or more functions together so t
  * @return {Function}
  */
 var compose = function (functions) {
-    return function (x) {
-        let res = x;
-        let n = functions.length;
-        for (let i = n - 1; i >= 0; i--) {
-            res = functions[i](res);
-        }
-        return res;
-    }
+	return function (x) {
+		let res = x;
+		let n = functions.length;
+		for (let i = n - 1; i >= 0; i--) {
+			res = functions[i](res);
+		}
+		return res;
+	};
 };
 
-
-const fn = compose([x => x + 1, x => 2 * x])
-fn(4) // 9
-
+const fn = compose([(x) => x + 1, (x) => 2 * x]);
+fn(4); // 9

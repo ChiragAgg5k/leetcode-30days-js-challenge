@@ -4,16 +4,14 @@
  * @return {Array[]}
  */
 var chunk = function (arr, size) {
+	const res = [];
+	const n = arr.length;
 
-    const res = [];
-    const n = arr.length;
+	for (let i = 0; i < n; i += size) {
+		res.push(arr.slice(i, i + size));
+	}
 
-    for (let i = 0; i < n; i += size) {
-        res.push(arr.slice(i, i + size));
-    }
-
-    return res;
-
+	return res;
 };
 
 // slice is same as split in python
