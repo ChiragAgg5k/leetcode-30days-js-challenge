@@ -1,36 +1,22 @@
 /**
- * @param {any} obj
- * @param {any} classFunction
- * @return {boolean}
+ * @param {Function} fn
+ * @return {Array}
  */
+Array.prototype.groupBy = function (fn) {
+	const res = {};
 
-// What is Prototype?
-// Every object in JavaScript has a prototype. The prototype is also an object.
-// All JavaScript objects inherit their properties and methods from their prototype.
-
-var checkIfInstanceOf = function (obj, classFunction) {
-	if (
-		obj === null ||
-		obj === undefined ||
-		typeof classFunction !== "function"
-	)
-		return false;
-
-	// For objects, prototype attribute is hidden, so we need to use Object.getPrototypeOf
-	// Whereas for functions, prototype attribute is visible
-	let currentPrototype = Object.getPrototypeOf(obj);
-	while (currentPrototype != null) {
-		if (currentPrototype === classFunction.prototype) {
-			return true;
+	for (const obj of this) {
+		const key = fn(obj);
+		if (!(key in res)) {
+			res[key] = [];
 		}
-		currentPrototype = Object.getPrototypeOf(currentPrototype); // in case of inheritance
+
+		res[key].push(obj);
 	}
 
-	return false;
+	return res;
 };
 
-// Test cases
-console.log(checkIfInstanceOf({}, Object)); // true
-console.log(checkIfInstanceOf([], Object)); // true (because Array is a child of Object)
-console.log(checkIfInstanceOf([], Array)); // true
-console.log(checkIfInstanceOf([], Function)); // false
+/**
+ * [1,2,3].groupBy(String) // {"1":[1],"2":[2],"3":[3]}
+ */
